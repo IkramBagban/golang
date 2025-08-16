@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func main() {
 	fmt.Println("-----")
@@ -14,13 +17,13 @@ func main() {
 		fmt.Println("Minor")
 	}
 
-	fmt.Println("-----")
+	fmt.Println("----- loop")
 
 	for i := 1; i < 10; i++ {
 		fmt.Println(i)
 	}
 
-	fmt.Println("-----")
+	fmt.Println("----- switch")
 	var day int = 4
 
 	switch day {
@@ -40,5 +43,29 @@ func main() {
 		fmt.Println("Sunday")
 	}
 
-	fmt.Println("-----")
+	fmt.Println("----- multiple condition switch")
+
+	switch time.Now().Weekday() {
+	case time.Saturday, time.Sunday: // we can add multiple conditoin like this.
+		fmt.Println("It's weekend")
+	default:
+		fmt.Println("It's workday")
+	}
+
+	fmt.Println("----- type switch")
+	whoAmI := func(i interface{}) {
+		switch t := i.(type) {
+		case int:
+			fmt.Println("I'm an int:", t)
+		case string:
+			fmt.Println("I'm a string:", t)
+		default:
+			fmt.Println("I'm of a different type:", t)
+		}
+
+	}
+
+	whoAmI(42)
+	whoAmI("hello")
+	whoAmI(3.14)
 }
